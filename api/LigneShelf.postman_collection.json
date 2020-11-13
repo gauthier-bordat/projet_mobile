@@ -1,0 +1,27 @@
+{
+	"info": {
+		"_postman_id": "cf1e21b1-a085-436b-bb4c-4929547f1278",
+		"name": "LigneShelf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all lines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/lignes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"lignes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
