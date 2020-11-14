@@ -11,10 +11,7 @@ export class AppService {
     private readonly ligneRepository:Model<LigneDocument>
   ) {}
   getAll(): Promise<Ligne[]> {
-    return this.epurer(this.ligneRepository.find().exec());
+    return this.ligneRepository.find().exec();
   }
 
-  epurer(data:any):Promise<Ligne[]>{
-    return this.ligneRepository.find().exec();
-}
 }

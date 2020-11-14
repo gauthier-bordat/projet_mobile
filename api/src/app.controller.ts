@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getAll(): Promise<Ligne[]>{
+  getAll(): Promise<Ligne[]> {
     return this.appService.getAll();
   }
 }
