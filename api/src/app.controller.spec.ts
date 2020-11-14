@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppModule } from './app.module';
 import { INestApplication } from '@nestjs/common';
 import supertest from 'supertest';
@@ -13,18 +12,18 @@ describe('AppController', () => {
     const moduleRef = await Test.createTestingModule({
       imports:[AppModule],
     }).compile();
-    if(moduleRef){    app = moduleRef.createNestApplication();}
+    app = moduleRef.createNestApplication();
 
     await app.init();
 
-    httpRequester = request(app.getHttpServer())
+    httpRequester = request(app.getHttpServer());
 
   });
 
 
     it('/GET devrais tout retourner', async () => {
       const response =  await httpRequester.get('/lignes_tan').expect(200);
-      expect(response.body).toBe(
+      expect(response.body).toEqual(
         ''
       );
     });
