@@ -1,6 +1,7 @@
 import {Arret} from './arret';
 
 export interface Ligne_traitee{
+  _id: string;
   favorie:boolean;
   nom: string;
   numero:string;

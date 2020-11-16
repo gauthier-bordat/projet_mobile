@@ -25,7 +25,7 @@ export class Ligne_traiteeDocument extends Document{
 
 export const Ligne_traiteeSchema = SchemaFactory.createForClass(Ligne_traiteeDocument);
 
-@Schema({collection: 'lignes_tan'})
+@Schema({collection: 'ligne_tan_traitee'})
 export class LigneDocument extends Document{
   @Prop()
   arrets: Array<number>;

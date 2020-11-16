@@ -27,10 +27,21 @@ describe('AppController', () => {
     it('/GET devrais tout retourner', async () => {
 
       const response =  await httpRequester.get('/ligne_tan').expect(200);
-    /**  const traitee = traiter(response.body);
-      await httpRequester.post('/ligne_tan_traitee')
-          .send(traitee)
-          .expect(201);**/
+      const traitee = traiter(response.body);
+      for(let i = 0; i < traitee.length;i++){
+          await httpRequester.post('/ligne_tan')
+              .send({  _id: string;
+                  favorie:boolean;
+                  nom: string;
+                  numero:string;
+                  type:string;
+                  color:string;
+                  arrets:{
+                      aller: Array<Arret>,
+                      retour: Array<Arret>};
+                  data : traitee[i]});
+      }
+
       expect(response.body).toMatchObject(
           {
             favorie:true,
@@ -50,6 +61,7 @@ describe('AppController', () => {
 function traiter(obj:any) :Array<Ligne_traitee>{
     const rep : Array<Ligne_traitee> = [];
     for(let i = 0;i<obj.length;i++){
+        if(obj[i].fields == undefined){break;}
         const arretsRetour : Array<Arret> = [];
         const arretsAller : Array<Arret> = [];
         for(let j = 0;j<obj[i].fields.shape.coordinates[0].length;j++){
@@ -72,6 +84,7 @@ function traiter(obj:any) :Array<Ligne_traitee>{
             arretsRetour.push(arret);
         }}
         const ligne : Ligne_traitee = {
+            _id:obj[i].recordid,
             favorie:false,
             nom: obj[i].fields.route_long_name,
             numero:obj[i].fields.route_short_name,
