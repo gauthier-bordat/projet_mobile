@@ -5,6 +5,9 @@ import { Arret } from './arret';
 @Schema({collection: 'ligne_traitee_tan'})
 export class Ligne_traiteeDocument extends Document{
   @Prop()
+  _id:string;
+
+  @Prop()
   favorie:boolean;
 
   @Prop()
@@ -20,7 +23,8 @@ export class Ligne_traiteeDocument extends Document{
   color:string;
 
   @Prop()
-  arrets:Array<Arret>;
+  arrets:{ aller:Array<Arret>,
+    retour:Array<Arret>};
 }
 
 export const Ligne_traiteeSchema = SchemaFactory.createForClass(Ligne_traiteeDocument);
@@ -51,16 +55,3 @@ export class LigneDocument extends Document{
 
 export const LigneSchema = SchemaFactory.createForClass(LigneDocument);
 
-@Schema({collection: 'arret_tan'})
-export class ArretDocument extends Document{
-  @Prop()
-  ligne: string ;
-
-  @Prop()
-  type: string ;
-
-  @Prop()
-  coordonnee: Array<number>;
-}
-
-export const ArretSchema = SchemaFactory.createForClass(ArretDocument);

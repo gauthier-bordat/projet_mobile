@@ -1,6 +1,6 @@
 import { Controller,Param,Body, Get,Put,Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Ligne } from './ligne';
+import {Ligne, Ligne_traitee} from './ligne';
 
 @Controller('ligne_tan')
 export class AppController {
@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Post()
-  addLigne(@Body() newLigne:Ligne):Promise<Ligne> | undefined {
+  addLigne(@Body() newLigne:Ligne_traitee):Promise<Ligne_traitee> | undefined {
     return this.appService.addLigne(newLigne);
   }
 }
