@@ -30,16 +30,18 @@ describe('AppController', () => {
       const traitee = traiter(response.body);
       for(let i = 0; i < traitee.length;i++){
           await httpRequester.post('/ligne_tan')
-              .send({  _id: string;
-                  favorie:boolean;
-                  nom: string;
-                  numero:string;
-                  type:string;
-                  color:string;
-                  arrets:{
-                      aller: Array<Arret>,
-                      retour: Array<Arret>};
-                  data : traitee[i]});
+              .send({
+                  _id: traitee[i]._id,
+                  favorie: traitee[i].favorie,
+                  nom: traitee[i].nom,
+                  numero: traitee[i].numero,
+                  type: traitee[i].type,
+                  color: traitee[i].color,
+                  arrets: {
+                      aller: traitee[i].arrets.aller,
+                      retour: traitee[i].arrets.retour
+                  },
+              });
       }
 
       expect(response.body).toMatchObject(
