@@ -2,8 +2,8 @@ import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {Document } from 'mongoose';
 import { Arret } from './arret';
 
-@Schema({collection: 'lignes-gme'})
-export class LigneDocument extends Document{
+@Schema({collection: 'ligne_traitee_tan'})
+export class Ligne_traiteeDocument extends Document{
   @Prop()
   favorie:boolean;
 
@@ -23,9 +23,35 @@ export class LigneDocument extends Document{
   arrets:Array<Arret>;
 }
 
+export const Ligne_traiteeSchema = SchemaFactory.createForClass(Ligne_traiteeDocument);
+
+@Schema({collection: 'lignes_tan'})
+export class LigneDocument extends Document{
+  @Prop()
+  arrets: Array<number>;
+
+  @Prop()
+  _id: string;
+
+  @Prop()
+  datasetid: string;
+
+  @Prop()
+  recordid: string;
+
+  @Prop()
+  fields: { object };
+
+  @Prop()
+  geometry: {object};
+
+  @Prop()
+  record_timestamp: string;
+}
+
 export const LigneSchema = SchemaFactory.createForClass(LigneDocument);
 
-@Schema({collection: 'arret-gme'})
+@Schema({collection: 'arret_tan'})
 export class ArretDocument extends Document{
   @Prop()
   ligne: string ;

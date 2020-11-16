@@ -11,7 +11,11 @@ export class AppService {
     private readonly ligneRepository:Model<LigneDocument>
   ) {}
   getAll(): Promise<Ligne[]> {
-    return this.ligneRepository.find().exec();
+    return  this.ligneRepository.find().exec();
+  }
+
+  addLigne(ligne:Ligne) :Promise<Ligne>{
+    return this.ligneRepository.create(ligne);
   }
 
 }
