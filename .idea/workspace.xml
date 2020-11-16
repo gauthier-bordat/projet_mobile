@@ -19,12 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f52c212-133e-414c-849f-2e716b3e74cf" name="Default Changelist" comment="corriger">
+    <list default="true" id="8f52c212-133e-414c-849f-2e716b3e74cf" name="Default Changelist" comment="reussit du traitement de donnee">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/app.controller.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.controller.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/app.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/ligne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/ligne.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.16.2" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.19.4" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -107,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605262025361</updated>
       <workItem from="1605262027043" duration="580000" />
-      <workItem from="1605269891303" duration="38519000" />
+      <workItem from="1605269891303" duration="41344000" />
     </task>
     <task id="LOCAL-00001" summary="commit for vincent">
       <created>1605352974592</created>
@@ -144,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605521073869</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="reussit du traitement de donnee">
+      <created>1605523575660</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605523575660</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +175,8 @@
     <MESSAGE value="extradition des donnees" />
     <MESSAGE value="for vincent" />
     <MESSAGE value="corriger" />
-    <option name="LAST_COMMIT_MESSAGE" value="corriger" />
+    <MESSAGE value="reussit du traitement de donnee" />
+    <option name="LAST_COMMIT_MESSAGE" value="reussit du traitement de donnee" />
   </component>
   <component name="WindowStateProjectService">
     <state x="638" y="305" key="#ESLint" timestamp="1605520546080">
@@ -189,25 +199,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="853" height="466" key="DebuggerActiveHint/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605514100002" />
-    <state width="1515" height="262" key="GridCell.Tab.0.bottom" timestamp="1605523409669">
+    <state width="1515" height="262" key="GridCell.Tab.0.bottom" timestamp="1605530901352">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605523409669" />
+    <state width="1515" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605530901352" />
     <state width="938" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605522856764" />
-    <state width="1515" height="262" key="GridCell.Tab.0.center" timestamp="1605523409669">
+    <state width="1515" height="262" key="GridCell.Tab.0.center" timestamp="1605530901351">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="262" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605523409669" />
+    <state width="1515" height="262" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605530901351" />
     <state width="938" height="262" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605522856763" />
-    <state width="1515" height="262" key="GridCell.Tab.0.left" timestamp="1605523409669">
+    <state width="1515" height="262" key="GridCell.Tab.0.left" timestamp="1605530901351">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="262" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605523409669" />
+    <state width="1515" height="262" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605530901351" />
     <state width="938" height="262" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605522856763" />
-    <state width="1515" height="262" key="GridCell.Tab.0.right" timestamp="1605523409669">
+    <state width="1515" height="262" key="GridCell.Tab.0.right" timestamp="1605530901352">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="262" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605523409669" />
+    <state width="1515" height="262" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605530901352" />
     <state width="938" height="262" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605522856764" />
     <state width="1899" height="275" key="GridCell.Tab.1.bottom" timestamp="1605521795498">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -273,10 +283,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="411" y="115" key="RollbackChangesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605523395707" />
-    <state x="363" y="148" key="Vcs.Push.Dialog.v2" timestamp="1605521076272">
+    <state x="363" y="148" key="Vcs.Push.Dialog.v2" timestamp="1605529223012">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="363" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605521076272" />
+    <state x="363" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605529223012" />
     <state x="1920" y="0" width="960" height="1040" key="dock-window-1" timestamp="1605474681383">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

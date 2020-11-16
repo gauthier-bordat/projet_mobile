@@ -6,6 +6,11 @@ import supertest from 'supertest';
 import * as request from 'supertest';
 import {Ligne_traitee} from "./ligne";
 import {Arret} from "./arret";
+import * as mongoose from "mongoose";
+
+
+
+
 
 describe('AppController', () => {
   let app: INestApplication;
@@ -29,19 +34,8 @@ describe('AppController', () => {
       const response =  await httpRequester.get('/ligne_tan').expect(200);
       const traitee = traiter(response.body);
       for(let i = 0; i < traitee.length;i++){
-          await httpRequester.post('/ligne_tan')
-              .send({
-                  _id: traitee[i]._id,
-                  favorie: traitee[i].favorie,
-                  nom: traitee[i].nom,
-                  numero: traitee[i].numero,
-                  type: traitee[i].type,
-                  color: traitee[i].color,
-                  arrets: {
-                      aller: traitee[i].arrets.aller,
-                      retour: traitee[i].arrets.retour
-                  },
-              });
+          await httpRequester.put('/ligne_tan')
+              .send(traitee[i]);
       }
 
       expect(response.body).toMatchObject(
@@ -86,7 +80,7 @@ function traiter(obj:any) :Array<Ligne_traitee>{
             arretsRetour.push(arret);
         }}
         const ligne : Ligne_traitee = {
-            _id:obj[i].recordid,
+            _id:mongoose.Types.ObjectId(),
             favorie:false,
             nom: obj[i].fields.route_long_name,
             numero:obj[i].fields.route_short_name,

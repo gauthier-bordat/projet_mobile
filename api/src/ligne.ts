@@ -1,7 +1,9 @@
 import {Arret} from './arret';
+import * as mongoose from "mongoose";
+
 
 export interface Ligne_traitee{
-  _id: string;
+  _id: mongoose.Types.ObjectId;
   favorie:boolean;
   nom: string;
   numero:string;

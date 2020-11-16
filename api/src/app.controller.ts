@@ -11,7 +11,7 @@ export class AppController {
     return this.appService.getAll();
   }
 
-  @Post()
+  @Put()
   addLigne(@Body() newLigne:Ligne_traitee):Promise<Ligne_traitee> | undefined {
     return this.appService.addLigne(newLigne);
   }
