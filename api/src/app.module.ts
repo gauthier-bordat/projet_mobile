@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {MongooseModule} from '@nestjs/mongoose';
-import {Ligne_traiteeDocument, Ligne_traiteeSchema,LigneDocument,LigneSchema} from './app.schema';
+import {Ligne_traiteeDocument, Ligne_traiteeSchema} from './app.schema';
 
 
 @Module({

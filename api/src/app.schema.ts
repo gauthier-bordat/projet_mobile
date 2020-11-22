@@ -30,29 +30,5 @@ export class Ligne_traiteeDocument extends Document{
 
 export const Ligne_traiteeSchema = SchemaFactory.createForClass(Ligne_traiteeDocument);
 
-@Schema({collection: 'ligne_tan_traitee'})
-export class LigneDocument extends Document{
-  @Prop()
-  arrets: Array<number>;
 
-  @Prop()
-  _id: string;
-
-  @Prop()
-  datasetid: string;
-
-  @Prop()
-  recordid: string;
-
-  @Prop()
-  fields: { object };
-
-  @Prop()
-  geometry: {object};
-
-  @Prop()
-  record_timestamp: string;
-}
-
-export const LigneSchema = SchemaFactory.createForClass(LigneDocument);
 

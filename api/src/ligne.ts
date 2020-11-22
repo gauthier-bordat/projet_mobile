@@ -1,5 +1,4 @@
 import {Arret} from './arret';
-import * as mongoose from "mongoose";
 
 
 export interface Ligne_traitee{
@@ -14,16 +13,6 @@ export interface Ligne_traitee{
     retour: Array<Arret>};
 }
 
-export interface Ligne{
-  arrets: Array<number>;
-  _id: string;
-  datasetid: string;
-  recordid: string;
-  fields: { object };
-  geometry: {object};
-  record_timestamp: string;
-
-}
 /**
 {
   favorie:true;

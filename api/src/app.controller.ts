@@ -1,13 +1,13 @@
 import { Controller,Param,Body, Get,Put,Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import {Ligne, Ligne_traitee} from './ligne';
+import { Ligne_traitee} from './ligne';
 
 @Controller('ligne_tan')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getAll(): Promise<Ligne[]> {
+  getAll(): Promise<Ligne_traitee[]> {
     return this.appService.getAll();
   }
 
