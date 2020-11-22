@@ -32,11 +32,11 @@ describe('AppController', () => {
     it('/GET devrais tout retourner', async () => {
 
       const response =  await httpRequester.get('/ligne_tan').expect(200);
-      const traitee = traiter(response.body);
+     /** const traitee = traiter(response.body);
       for(let i = 0; i < traitee.length;i++){
           await httpRequester.put('/ligne_tan')
               .send(traitee[i]);
-      }
+      }**/
 
       expect(response.body).toMatchObject(
           {
@@ -80,7 +80,7 @@ function traiter(obj:any) :Array<Ligne_traitee>{
             arretsRetour.push(arret);
         }}
         const ligne : Ligne_traitee = {
-            _id:mongoose.Types.ObjectId(),
+            _id:obj[i]._id.toString(),
             favorie:false,
             nom: obj[i].fields.route_long_name,
             numero:obj[i].fields.route_short_name,

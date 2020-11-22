@@ -6,7 +6,7 @@ import * as mongoose from "mongoose";
 @Schema({collection: 'ligne_traitee_tan'})
 export class Ligne_traiteeDocument extends Document{
   @Prop()
-  _id:mongoose.Types.ObjectId;
+  _id:string;
 
   @Prop()
   favorie:boolean;

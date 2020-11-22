@@ -3,7 +3,7 @@ import * as mongoose from "mongoose";
 
 
 export interface Ligne_traitee{
-  _id: mongoose.Types.ObjectId;
+  _id: string;
   favorie:boolean;
   nom: string;
   numero:string;

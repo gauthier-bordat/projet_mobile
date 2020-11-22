@@ -8,8 +8,7 @@ import {Ligne_traiteeDocument, Ligne_traiteeSchema,LigneDocument,LigneSchema} fr
 @Module({
   imports: [MongooseModule.forRoot('mongodb+srv://Bourel_Maisse_Bordat:azerty123@projetbourelbordat.trvaw.mongodb.net/ligne_tan?retryWrites=true&w=majority'),
       MongooseModule.forFeature([
-        {name: Ligne_traiteeDocument.name,schema: Ligne_traiteeSchema},
-        {name: LigneDocument.name,schema: LigneSchema}],
+        {name: Ligne_traiteeDocument.name,schema: Ligne_traiteeSchema}],
   )],
   controllers: [AppController],
   providers: [AppService],
