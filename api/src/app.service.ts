@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Ligne_traitee} from './ligne';
 import { InjectModel } from '@nestjs/mongoose';
-import {Ligne_traiteeDocument, LigneDocument} from './app.schema';
+import {Ligne_traiteeDocument} from './app.schema';
 import {Model} from 'mongoose';
 
 @Injectable()
