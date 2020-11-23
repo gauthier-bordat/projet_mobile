@@ -32,11 +32,6 @@ describe('AppController', () => {
     it('/GET devrais tout retourner', async () => {
 
       const response =  await httpRequester.get('/ligne_tan').expect(200);
-     /** const traitee = traiter(response.body);
-      for(let i = 0; i < traitee.length;i++){
-          await httpRequester.put('/ligne_tan')
-              .send(traitee[i]);
-      }**/
 
       expect(response.body).toMatchObject(
           {
@@ -52,7 +47,7 @@ describe('AppController', () => {
           }
       );
     });
-  });
+  });/**
 
 function traiter(obj:any) :Array<Ligne_traitee>{
     const rep : Array<Ligne_traitee> = [];
@@ -92,4 +87,4 @@ function traiter(obj:any) :Array<Ligne_traitee>{
         rep.push(ligne);
     }
     return rep;
-}
+}**/

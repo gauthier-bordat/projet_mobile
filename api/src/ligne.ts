@@ -13,15 +13,3 @@ export interface Ligne_traitee{
     retour: Array<Arret>};
 }
 
-/**
-{
-  favorie:true;
-  nom: 'test';
-  numero: 'c1';
-  type:'bus';
-  color:'ffffff';
-  arrets:[{
-      ligne:'test',
-    type:'bus',
-    coordonne:[[43,15]]}]
-}**/
