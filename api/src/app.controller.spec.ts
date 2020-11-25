@@ -4,10 +4,6 @@ import { AppModule } from './app.module';
 import { INestApplication } from '@nestjs/common';
 import supertest from 'supertest';
 import * as request from 'supertest';
-import {Ligne_traitee} from "./ligne";
-import {Arret} from "./arret";
-import * as mongoose from "mongoose";
-
 
 
 
@@ -47,7 +43,10 @@ describe('AppController', () => {
           }
       );
     });
-  });/**
+  });
+
+
+/**
 
 function traiter(obj:any) :Array<Ligne_traitee>{
     const rep : Array<Ligne_traitee> = [];
