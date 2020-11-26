@@ -51,6 +51,5 @@
         app:srcCompat="@drawable/ic_baseline_search_24" />
     <!--    android:onClick="goToCreation" -->
 
-    <!--    android:onClick="goToCreation" -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
