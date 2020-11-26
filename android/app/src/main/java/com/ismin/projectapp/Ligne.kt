@@ -3,7 +3,7 @@ package com.ismin.projectapp
 import java.io.Serializable
 
 
-data class ligne( val _id: String,
+data class Ligne( val _id: String,
              val favorie : Boolean,
              val nom: String,
              val numero : String,

@@ -1,7 +1,6 @@
 import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {Document } from 'mongoose';
 import { Arret } from './arret';
-import * as mongoose from "mongoose";
 
 @Schema({collection: 'ligne_traitee_tan'})
 export class Ligne_traiteeDocument extends Document{
