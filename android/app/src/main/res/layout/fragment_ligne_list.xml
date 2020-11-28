@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ismin.projectapp.LigneListFragment">
+    tools:context="com.ismin.projectapp.LignelistFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/f_book_list_rcv_books"
+        android:id="@+id/f_ligne_list_rcv_ligne"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
