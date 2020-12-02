@@ -1,6 +1,7 @@
 package com.ismin.projectapp
 
 import android.os.Bundle
+import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 private const val ARG_LIGNES = "ARG_LIGNES"
 
-class LignelistFragment : Fragment(){
+class LigneListFragment : Fragment(){
     private lateinit var lignes : ArrayList<Ligne>
     private lateinit var rcvLignes : RecyclerView
     private lateinit var ligneAdapter: LigneAdapter
@@ -38,5 +39,18 @@ class LignelistFragment : Fragment(){
 
         return rootView
 
+    }
+
+    companion object{
+        @JvmStatic
+        fun newInstance(ligneToDisplay: ArrayList<Ligne>) : LigneListFragment {
+            val bundle = Bundle()
+            bundle.putSerializable(ARG_LIGNES,ligneToDisplay)
+
+            val ligneListFragment = LigneListFragment()
+            ligneListFragment.arguments = bundle
+
+            return ligneListFragment
+        }
     }
 }

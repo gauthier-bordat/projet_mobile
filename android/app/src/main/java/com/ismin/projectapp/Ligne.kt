@@ -3,11 +3,11 @@ package com.ismin.projectapp
 import java.io.Serializable
 
 
-data class Ligne( val _id: String,
+data class Ligne(
              val favorie : Boolean,
              val nom: String,
              val numero : String,
              val type:String,
-             val color:String,
-             val arrets : Arrets) :Serializable {
+             val coulor:String,
+             val arrets : Arrets?) :Serializable {
 }
