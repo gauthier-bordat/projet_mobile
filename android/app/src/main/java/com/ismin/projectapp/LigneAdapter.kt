@@ -51,7 +51,8 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
         var imgvPasFavorie = itemView.findViewById<ImageView>(R.id.image_pas_favorie)
 
         init {
-            itemView.constraint_list.setOnClickListener {
+            itemView.setOnClickListener {
+
                 val list = lignes as List<Ligne>
                 for(item in list.indices){
                     list[item].isSelected = false
@@ -60,7 +61,6 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
 
                 mCallback.onDeviceClick(adapterPosition)
                 notifyDataSetChanged()
-
                 context?.let { it1 ->ContextCompat.getColor(it1,R.color.select) }?.let { it2 -> itemView.constraint_list?.setBackgroundColor(it2) }
             }
         }
