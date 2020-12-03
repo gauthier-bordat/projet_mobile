@@ -1,13 +1,11 @@
 package com.ismin.projectapp
 
 
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.BounceInterpolator
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -28,13 +26,11 @@ class CreateLigneFragment : Fragment(){
         rootView.findViewById<View>(R.id.f_create_ligne_view_clicker).setOnClickListener{listener.closeLigneCreation()}
 
         rootView.findViewById<Button>(R.id.f_create_ligne_btn_save).setOnClickListener{
-            val favorie : Boolean = false
             val nom: String = rootView.findViewById<EditText>(R.id.f_create_ligne_edt_name).text.toString()
             val numero : String = rootView.findViewById<EditText>(R.id.f_create_ligne_edt_num).text.toString()
             val type:String = rootView.findViewById<EditText>(R.id.f_create_ligne_edt_type).text.toString()
             val color:String = rootView.findViewById<EditText>(R.id.f_create_ligne_edt_color).text.toString()
-            val arrets : Arrets? = null
-            val ligne = Ligne(favorie,nom,numero,type,color,arrets)
+            val ligne = Ligne(nom,numero,type,color)
             listener.onLigneCreated(ligne)
         }
 

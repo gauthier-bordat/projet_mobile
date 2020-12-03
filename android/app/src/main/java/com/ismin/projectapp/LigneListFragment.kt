@@ -1,7 +1,6 @@
 package com.ismin.projectapp
 
 import android.os.Bundle
-import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class LigneListFragment : Fragment(){
     ) :View?{
         val rootView = inflater.inflate(R.layout.fragment_ligne_list, container,false)
         this.rcvLignes = rootView.findViewById(R.id.f_ligne_list_rcv_ligne)
-        ligneAdapter = LigneAdapter(lignes)
+        ligneAdapter = LigneAdapter(context,lignes,DeviceClickListener())
         this.rcvLignes.adapter = ligneAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         this.rcvLignes.layoutManager = linearLayoutManager
@@ -40,6 +39,7 @@ class LigneListFragment : Fragment(){
         return rootView
 
     }
+
 
     companion object{
         @JvmStatic

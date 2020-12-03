@@ -5,15 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.selection.SelectionPredicates
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StableIdKeyProvider
-import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
-    private var tracker : SelectionTracker<Long>? = null
     private val ligneshelf = Ligneshelf()
 
 
@@ -21,7 +16,7 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
     private val premier = Ligne(
             favorie = false,
             nom = "ligne1",
-            numero = "1 ",
+            numero = "1",
             type = "tram",
             coulor="ffffff",
             arrets = null
