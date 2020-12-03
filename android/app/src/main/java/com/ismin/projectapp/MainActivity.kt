@@ -78,10 +78,7 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
         a_main_btn_search.visibility = View.GONE
     }
 
-    fun goToCreation(view: View) {
-        println("goToCreation")
-        displayCreation()
-    }
+    fun goToCreation(view: View) = displayCreation()
 
     fun displayShearch(){
         println("displayShearch")
@@ -106,34 +103,20 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
         a_main_btn_search.visibility = View.VISIBLE
 
     }
-    fun goToShearch(view: View){
-        println("goToShearch")
-        displayShearch()
-    }
+    fun goToShearch(view: View)=  displayShearch()
 
     override fun onLigneCreated(ligne: Ligne) {
-        println("onLigneCreated")
         ligneshelf.addLigne(ligne)
         displayList()
     }
 
-    override fun closeLigneCreation() {
-        println("closeLigneCreation")
-        displayList()
-    }
+    override fun closeLigneCreation() =  displayList()
 
-    override fun onLigneShearch(shearch: String) {
-        println("onLigneShearch")
-        displayShearchDone(shearch)
-    }
+    override fun onLigneShearch(shearch: String) = displayShearchDone(shearch)
 
-    override fun closeLigneShearch(){
-        println("closeLigneShearch")
-        displayList()
-    }
+    override fun closeLigneShearch() =  displayList()
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        println("onCreateOptionsMenu")
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
