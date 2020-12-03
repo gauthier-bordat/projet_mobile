@@ -1,13 +1,18 @@
 package com.ismin.projectapp
 
-class Ligneshelf (){
-    private val lignesStorage : HashMap<String, Ligne>()
+class Ligneshelf{
+    private val lignesStorage : HashMap<String, Ligne> = HashMap<String, Ligne>()
+
 
     fun getLigne(nom : String):Ligne? {
         return this.lignesStorage[nom]
     }
 
-    private val favoriesStorage : HashMap<String,Ligne>()
+    fun clearLigne():Unit{
+        this.lignesStorage.clear()
+    }
+
+    private val favoriesStorage : HashMap<String,Ligne> = HashMap<String, Ligne>()
 
     fun getFavorie(nom: String):Ligne?{
         return this.favoriesStorage[nom]
@@ -22,11 +27,17 @@ class Ligneshelf (){
         }
     }
 
+    fun shearch(shearch :String) : ArrayList<Ligne>{
+         val rep = ArrayList<Ligne>(this.favoriesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)} +
+                 this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)})
+        println(rep)
+        return rep
+    }
 
 
 
 
-    /**fun getLigneByNum(numero : String) = this.lignesStorage.filter{it.value.numero == numero}[0]**/
+    fun getLigneByNum(numero : String) = this.lignesStorage.filter{it.value.numero == numero}[0]
 
 
 
@@ -45,9 +56,13 @@ class Ligneshelf (){
         }
         return null
     }
+
+    fun getNumberOfLignes():Int{
+        return this.lignesStorage.size + this.favoriesStorage.size
+    }
     
     fun getAllLignes() : ArrayList<Ligne> {
-        return ArrayList<Ligne>(this.favoriesStorage.values.sortedBy{ligne -> ligne.nom} + this.lignesStorage.values.sortedBy{ligne -> ligne.nom  })
+        return ArrayList<Ligne>(this.favoriesStorage.values + this.lignesStorage.values)
     }
 
     fun clear() :Unit{
@@ -55,9 +70,7 @@ class Ligneshelf (){
         clearLigne()
     }
 
-    fun clearLigne():Unit{
-        this.lignesStorage.clear()
-    }
+
 
     fun clearFavorie():Unit{
         this.favoriesStorage.clear()

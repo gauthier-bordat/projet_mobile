@@ -1,19 +1,24 @@
 package com.ismin.projectapp
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class LigneAdapter(private val lignes: ArrayList<Ligne>) : RecyclerView.Adapter<LigneViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LigneViewHolder {
         val row = LayoutInflater.from(parent.context).inflate(R.layout.row_lignes,parent,false)
         return LigneViewHolder(row)
     }
 
     override fun onBindViewHolder(holder: LigneViewHolder, position: Int) {
-        val (favorie,nom,numero,type,couleur,arrets) = lignes[position]
-
+        val (favorie,nom,numero,type,couleur,_)= lignes[position]
         holder.txvNom.text = nom
         holder.txvNum.text = numero
         if (favorie){
@@ -31,11 +36,10 @@ class LigneAdapter(private val lignes: ArrayList<Ligne>) : RecyclerView.Adapter<
             holder.imgvBus.visibility = View.GONE
         }
         holder.imgvCouleur.visibility = View.VISIBLE
-        holder.imgvCouleur.setColorFilter(couleur.toInt())
+        holder.imgvCouleur.setColorFilter(Color.parseColor("#"+couleur))
+
     }
 
-    override fun getItemCount(): Int {
-        return lignes.size
-    }
+    override fun getItemCount(): Int = lignes.size
 
 }

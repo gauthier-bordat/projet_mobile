@@ -11,20 +11,20 @@
         android:id="@+id/image_pas_favorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_nom"
-        app:layout_constraintStart_toEndOf="@+id/text_nom"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_star_border_24" />
 
     <ImageView
         android:id="@+id/image_favorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/image_pas_favorie"
-        app:layout_constraintEnd_toEndOf="@+id/image_pas_favorie"
-        app:layout_constraintStart_toStartOf="@+id/image_pas_favorie"
-        app:layout_constraintTop_toTopOf="@+id/image_pas_favorie"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_star_24" />
 
     <ImageView
@@ -41,11 +41,10 @@
         android:id="@+id/image_tram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/image_bus"
-        app:layout_constraintEnd_toEndOf="@+id/image_bus"
-        app:layout_constraintStart_toStartOf="@+id/image_bus"
-        app:layout_constraintTop_toTopOf="@+id/image_bus"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="320dp"
+        tools:layout_editor_absoluteY="27dp"
         app:srcCompat="@drawable/ic_baseline_tram_24" />
 
     <ImageView
@@ -53,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/image_bus"
         app:layout_constraintTop_toBottomOf="@+id/image_bus"
         app:srcCompat="@drawable/ic_baseline_radio_button_checked_24" />
@@ -61,25 +61,30 @@
         android:id="@+id/text_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Numéro de ligne"
+        android:layout_marginStart="48dp"
         android:fontFamily="sans-serif-medium"
+        android:text="Numéro de ligne"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+
         app:layout_constraintBottom_toBottomOf="@+id/image_couleur"
-        app:layout_constraintEnd_toStartOf="@+id/image_pas_favorie"
+        app:layout_constraintEnd_toEndOf="@+id/text_nom"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/image_couleur"
-        app:layout_constraintTop_toBottomOf="@+id/text_nom" />
+        app:layout_constraintTop_toBottomOf="@+id/text_nom"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/text_nom"
-        android:layout_width="148dp"
-        android:layout_height="26dp"
-        android:text="Nom de la ligne "
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:text="Nom de la ligne "
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textStyle="bold"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_bus"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/image_bus"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
