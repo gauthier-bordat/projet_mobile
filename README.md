@@ -1,1 +1,6 @@
-# ismin-2020-project
+Ligne de transports
+
+Par :
+-Bordat Gauthier
+-Bourel Vincent
+
