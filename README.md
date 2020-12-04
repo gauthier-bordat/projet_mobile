@@ -13,13 +13,31 @@ Cette application devait apporter plusieurs outils de manipulation de la base pa
 Il peut ainsi :
 récupérer l'ensemble des lignes,
 récupérer l'ensemble des données d'une ligne,
+créer une ligne 
 et ajouter une ligne dans ses favoris.
 L'application n'est pas encore terminée.
+
+### Avant propos
+ Nous avons dans un premier temps du traité les données car le fichier JSON avec le quelle nous avons travaillé comportait beaucoup de données inutiles, et sa structure était inutilement complexe. 
+
 
 ### Part 1: 🍃 API MongoDB
 
 L'APi MongoDB est utilisé ici comme interface pour récupérer et modifié les données d'une base de donnée contenant l'ensemble des lignes. Il se compose principalement d'un `app.controler` et d'un `app.service` contenant respectivement les méthodes pour demander un service et pour traduire la demande à la base MangooDB.
 Enfin `app.module`et `app.shema` sont là pour se connecter à la base et pour mettre en forme les données. Le lien de la base de donné utilisé est : mongodb+srv://Bourel_Maisse_Bordat:azerty123@projetbourelbordat.trvaw.mongodb.net/ligne_tan?retryWrites=true&w=majority').build()
+Nous avons implémenté plusieurs fonctionnalités : 
+
+- un get qui récupère toutes les données 
+
+- un get/:nom qui récupère les données de la ligne avec le nom voulut
+
+- un get/:numero qui récupère les données de la ligne avec le numéro de ligne voulut
+
+- un post/nom permet de mettre a jour le base de données en signifiant que la ligne avec le nom voulut passe en favori
+
+- un post/search qui permette d'obtenir le résultat d'un recherche
+
+- un put qui permet d'ajouter un élément à la base de données
 
 ### Part 2: Android
 
@@ -42,6 +60,8 @@ l'application s'ouvre sur un recyclerView d'informations de base des lignes, le 
 - S'il on clique sur le bouton add on peut rentrer les informations d'une nouvelle ligne (informations succinctes pour que l'application reste lisible) celle-ci vient de suite s'ajouter a la liste.
 
 - S'il on clique sur une ligne on en voit le détaille des arrêts on peut l'ajouter aussi aux favoris avec un bouton ce qui sera visible un foix que l'on revient a l'écran d'affichage
+
+
 ###📝 Library
 - Converter: Gson: 'com.squareup.retrofit2:converter-gson:2.6.2'
 - Retrofit: 'com.squareup.retrofit2:retrofit:2.6.2'

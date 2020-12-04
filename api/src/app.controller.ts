@@ -1,4 +1,4 @@
-import { Controller,Param,Body, Get,Put,Post } from '@nestjs/common';
+import { Controller,Param,Body,Query, Get,Put,Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Ligne_traitee} from './ligne';
 
