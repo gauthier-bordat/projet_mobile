@@ -13,43 +13,12 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
 
 
 
-    private val premier = Ligne(
-            favorie = false,
-            nom = "ligne1",
-            numero = "1",
-            type = "tram",
-            coulor="ffffff",
-            arrets = null
-    )
-
-
-    private val second = Ligne(
-            favorie = true,
-            nom = "bouaye - bougnais",
-            numero = "C1 ",
-            type = "bus",
-            coulor="904030",
-            arrets = null
-    )
-
-    private val troisieme = Ligne(
-            favorie = false,
-            nom = "saint-herblain - commerce",
-            numero = "113 ",
-            type = "bus",
-            coulor="0000ff",
-            arrets = null
-    )
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.ligneshelf.essai()
 
 
-        this.ligneshelf.addLigne(premier)
-        this.ligneshelf.addLigne(second)
-        this.ligneshelf.addLigne(troisieme)
 
         displayList()
     }

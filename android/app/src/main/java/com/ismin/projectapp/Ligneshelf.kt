@@ -4,8 +4,43 @@ class Ligneshelf{
     private val lignesStorage : HashMap<String, Ligne> = HashMap<String, Ligne>()
 
 
+
+    private val premier = Ligne(
+        favorie = false,
+        nom = "ligne1",
+        numero = "1",
+        type = "tram",
+        coulor="ffffff",
+        arrets = null
+    )
+
+
+    private val second = Ligne(
+        favorie = true,
+        nom = "bouaye - bougnais",
+        numero = "C1 ",
+        type = "bus",
+        coulor="904030",
+        arrets = null
+    )
+
+    private val troisieme = Ligne(
+        favorie = false,
+        nom = "saint-herblain - commerce",
+        numero = "113 ",
+        type = "bus",
+        coulor="0000ff",
+        arrets = null
+    )
+
     fun getLigne(nom : String):Ligne? {
         return this.lignesStorage[nom]
+    }
+
+    fun essai(){
+        addLigne(premier)
+        addLigne(second)
+        addLigne(troisieme)
     }
     
     fun getLigneArret(nom : String):ArrayList<Arret>{
