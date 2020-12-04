@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
+class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreator{
     private val ligneshelf = Ligneshelf()
 
 
@@ -33,12 +33,15 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
 
     }
 
-    fun GoToArrets(nom :String) = displayArrte(nom)
+
+    override fun GoToArret(nom: String) = displayArrte(nom)
+
 
     private fun displayArrte(nom :String){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         this.ligneshelf.essai()
-        val arretListFragment = ArretsListFragment.newInstance(this.ligneshelf.getLigneArret(nom))
+
+        val arretListFragment = ArretsListFragment.newInstance(this.ligneshelf.getLigne(nom)!!)
 
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, arretListFragment)
         fragmentTransaction.commit()
@@ -111,6 +114,8 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 
 
 }

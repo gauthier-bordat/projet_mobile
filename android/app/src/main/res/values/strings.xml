@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"  translatable="false">Project App</string>
+    <string name="app_name" translatable="false">Project App</string>
     <string name="save">Save</string>
     <string name="search">Search</string>
     <string name="create">Create</string>
