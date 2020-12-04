@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
         setContentView(R.layout.activity_main)
         this.ligneshelf.essai()
 
-
-
         displayList()
     }
 
@@ -39,18 +37,15 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
 
     private fun displayArrte(nom :String){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val arretListFragment = this.ligneshelf.getLigne(nom)?.arrets?.let {
-            ArretsListFragment.newInstance(
-                it.aller)
-        }
-        if (arretListFragment != null){
+        this.ligneshelf.essai()
+        val arretListFragment = ArretsListFragment.newInstance(this.ligneshelf.getLigneArret(nom))
 
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, arretListFragment)
         fragmentTransaction.commit()
 
         a_main_btn_creation.visibility = View.GONE
         a_main_btn_search.visibility = View.GONE
-    }}
+    }
 
     private fun displayCreation(){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
