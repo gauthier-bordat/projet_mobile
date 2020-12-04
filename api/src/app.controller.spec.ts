@@ -32,7 +32,7 @@ describe('AppController', () => {
       const response =  await httpRequester.get('/ligne_tan').expect(200);
 
       expect(response.body).toMatchObject(
-          {
+          [{
             favorie:true,
             nom: 'test',
             numero: 'c1',
@@ -42,25 +42,73 @@ describe('AppController', () => {
               ligne:'test',
               type:'bus',
               coordonne:[[43,15]]}]
-          }
+          }]
       );
     });
-    it('/GET devrais tout retourner', async () => {
+    it('/GET ligne par nom ', async () => {
 
-        const response =  await httpRequester.get('/ligne_tan').expect(200);
+        const response =  await httpRequester.get('/ligne_tan/Coutancière - Lycée Appert').expect(200);
 
         expect(response.body).toMatchObject(
             {
                 favorie:true,
-                nom: 'test',
-                numero: 'c1',
-                type:'bus',
+                nom: 'Coutancière - Lycée Appert',
+                numero: '116',
+                type:'Bus',
                 color:'ffffff',
                 arrets:[{
                     ligne:'test',
                     type:'bus',
                     coordonne:[[43,15]]}]
             }
+        );
+    });
+    it('/POST ajouter un favorie ', async () => {
+
+        const response =  await httpRequester.post('/ligne_tan/Ferrière - Couchant').expect(200);
+
+        expect(response.body).toMatchObject(
+            {
+                favorie:true,
+                nom: 'Ferrière - Couchant',
+                numero: '116',
+                type:'Bus',
+                color:'ffffff',
+                arrets:[{
+                    ligne:'test',
+                    type:'bus',
+                    coordonne:[[43,15]]}]
+            }
+        );
+    });
+    it('/GET favorie ', async () => {
+
+        const response =  await httpRequester.get('/ligne_tan').query({favorie:'true'}).expect(200);
+
+        expect(response.body).toMatchObject(
+            [{
+                favorie:true,
+                nom: 'Coutancière - Lycée Appert',
+                numero: '116',
+                type:'Bus',
+                color:'ffffff',
+                arrets:[{
+                    ligne:'test',
+                    type:'bus',
+                    coordonne:[[43,15]]}]
+
+            },
+            {
+                favorie:true,
+                nom: 'Ferrière - Couchant',
+                numero: '116',
+                type:'Bus',
+                color:'ffffff',
+                arrets:[{
+                    ligne:'test',
+                    type:'bus',
+                    coordonne:[[43,15]]}]
+            }]
         );
     });
   });
