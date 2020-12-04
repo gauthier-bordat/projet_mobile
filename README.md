@@ -42,7 +42,7 @@ l'application s'ouvre sur un recyclerView d'informations de base des lignes, le 
 - S'il on clique sur le bouton add on peut rentrer les informations d'une nouvelle ligne (informations succinctes pour que l'application reste lisible) celle-ci vient de suite s'ajouter a la liste.
 
 - S'il on clique sur une ligne on en voit le détaille des arrêts on peut l'ajouter aussi aux favoris avec un bouton ce qui sera visible un foix que l'on revient a l'écran d'affichage
-##📝 Library
+###📝 Library
 - Converter: Gson: 'com.squareup.retrofit2:converter-gson:2.6.2'
 - Retrofit: 'com.squareup.retrofit2:retrofit:2.6.2'
 - Picasso: 'com.squareup.picasso:picasso:2.71828
