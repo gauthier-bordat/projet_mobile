@@ -42,7 +42,6 @@ class LigneListFragment : Fragment(){
         return rootView
 
     }
-
     override fun onAttach(context: Context){
         super.onAttach(context)
         println(context)
@@ -52,6 +51,7 @@ class LigneListFragment : Fragment(){
             throw RuntimeException("$context must implement ArretCreator")
         }
     }
+
 
 
     companion object{
