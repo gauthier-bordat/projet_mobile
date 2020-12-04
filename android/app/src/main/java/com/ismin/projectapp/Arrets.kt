@@ -2,7 +2,6 @@ package com.ismin.projectapp
 
 import java.io.Serializable
 
-data class Arrets(val aller : Array<Arret>,
-                    val retour : Array<Arret>) :Serializable {
-                        fun Arret(){}
+data class Arrets(val aller : ArrayList<Arret>,
+                    val retour : ArrayList<Arret>) :Serializable {
 }

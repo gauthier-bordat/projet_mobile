@@ -1,13 +1,35 @@
 package com.ismin.projectapp
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
-
+@Entity(tableName = "ligne_table")
 data class Ligne(
-             val favorie : Boolean,
-             val nom: String,
-             val numero : String,
-             val type:String,
-             val coulor:String,
-             val arrets : Arrets?) :Serializable {
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+
+    @ColumnInfo(name = "favorie")
+    val favorie: Boolean,
+
+    @ColumnInfo(name = "nom")
+    val nom: String,
+
+    @ColumnInfo(name = "numero")
+    val numero: String,
+
+    @ColumnInfo(name = "type")
+    val type:String,
+
+    @ColumnInfo(name = "couleur")
+    val coulor:String,
+
+    @ColumnInfo(name = "les_arrets")
+    val arrets: Arrets?,
+
+    @ColumnInfo(name = "Selected")
+    var isSelected: Boolean = false,
+        ) :Serializable {
+            constructor(nom:String,numero: String,type:String,coulor: String) : this(0,false,nom,numero,type,coulor,null,false)
 }

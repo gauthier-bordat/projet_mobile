@@ -5,15 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.selection.SelectionPredicates
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StableIdKeyProvider
-import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
-    private var tracker : SelectionTracker<Long>? = null
     private val ligneshelf = Ligneshelf()
 
 
@@ -21,7 +16,7 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
     private val premier = Ligne(
             favorie = false,
             nom = "ligne1",
-            numero = "1 ",
+            numero = "1",
             type = "tram",
             coulor="ffffff",
             arrets = null
@@ -60,7 +55,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
     }
 
     private fun displayList(){
-        println("displayList")
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val ligneListFragment = LigneListFragment.newInstance(this.ligneshelf.getAllLignes())
 
@@ -72,8 +66,24 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
 
     }
 
+    fun GoToArrets(nom :String) = displayArrte(nom)
+
+    private fun displayArrte(nom :String){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val arretListFragment = this.ligneshelf.getLigne(nom)?.arrets?.let {
+            ArretsListFragment.newInstance(
+                it.aller)
+        }
+        if (arretListFragment != null){
+
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, arretListFragment)
+        fragmentTransaction.commit()
+
+        a_main_btn_creation.visibility = View.GONE
+        a_main_btn_search.visibility = View.GONE
+    }}
+
     private fun displayCreation(){
-        println("displayCreation")
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val createLigneFragment = CreateLigneFragment()
         fragmentTransaction.add(R.id.a_main_lyt_fragment_container, createLigneFragment)
@@ -83,10 +93,7 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
         a_main_btn_search.visibility = View.GONE
     }
 
-    fun goToCreation(view: View) {
-        println("goToCreation")
-        displayCreation()
-    }
+    fun goToCreation(view: View) = displayCreation()
 
     fun displayShearch(){
         println("displayShearch")
@@ -111,34 +118,20 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
         a_main_btn_search.visibility = View.VISIBLE
 
     }
-    fun goToShearch(view: View){
-        println("goToShearch")
-        displayShearch()
-    }
+    fun goToShearch(view: View)=  displayShearch()
 
     override fun onLigneCreated(ligne: Ligne) {
-        println("onLigneCreated")
         ligneshelf.addLigne(ligne)
         displayList()
     }
 
-    override fun closeLigneCreation() {
-        println("closeLigneCreation")
-        displayList()
-    }
+    override fun closeLigneCreation() =  displayList()
 
-    override fun onLigneShearch(shearch: String) {
-        println("onLigneShearch")
-        displayShearchDone(shearch)
-    }
+    override fun onLigneShearch(shearch: String) = displayShearchDone(shearch)
 
-    override fun closeLigneShearch(){
-        println("closeLigneShearch")
-        displayList()
-    }
+    override fun closeLigneShearch() =  displayList()
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        println("onCreateOptionsMenu")
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -154,4 +147,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 }

@@ -7,6 +7,11 @@ class Ligneshelf{
     fun getLigne(nom : String):Ligne? {
         return this.lignesStorage[nom]
     }
+    
+    fun getLigneArret(nom : String):ArrayList<Arret>{
+        if(getLigne(nom) == null || getLigne(nom)?.arrets == null){return ArrayList()}
+        else{return getLigne(nom)!!.arrets!!.aller}
+    }
 
     fun clearLigne():Unit{
         this.lignesStorage.clear()
