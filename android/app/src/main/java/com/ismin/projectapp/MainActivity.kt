@@ -4,49 +4,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
-import kotlin.collections.ArrayList
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-
-
 
 class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreator{
     private val ligneshelf = Ligneshelf()
-    private lateinit var appservice: appService
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("mongodb+srv://Bourel_Maisse_Bordat:azerty123@projetbourelbordat.trvaw.mongodb.net/ligne_tan?retryWrites=true&w=majority').build()")
         this.ligneshelf.essai()
-        appservice = retrofit.create(appService::class.java)
-        creatList()
+
         displayList()
-    }
-    private fun creatList(){
-        appService.getAll().enqueue(object: Callback<ArrayList<Ligne>> {
-            override fun onResponse(
-                call: Call<ArrayList<Ligne>>, response: Response<ArrayList<Ligne>>){
-                val allLigne = response.body()
-                allLigne?.forEach {
-                    ligneshelf.addLigne(it)
-                }
-                displayList()
-            }
-            override fun onFailure(call: Call<ArrayList<Ligne>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
     }
 
     private fun displayList(){

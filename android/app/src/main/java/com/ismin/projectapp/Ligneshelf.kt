@@ -4,34 +4,35 @@ class Ligneshelf{
     private val lignesStorage : HashMap<String, Ligne> = HashMap<String, Ligne>()
 
 
+    private val ar1 =Arret("1","a", arrayListOf(43,13))
+    private val ar2 =Arret("2","a", arrayListOf(42,13))
+    private val ar3 =Arret("3","a", arrayListOf(41,13))
+    private val ar4 =Arret("4","a", arrayListOf(40,13))
+    private val ar5 =Arret("5","a", arrayListOf(43,12))
+    private val ar6 =Arret("6","a", arrayListOf(43,11))
+    private val ar7 =Arret("7","a", arrayListOf(43,10))
 
-    private val premier = Ligne(
-        favorie = false,
-        nom = "ligne1",
-        numero = "1",
-        type = "tram",
-        coulor="ffffff",
-        arrets = null
-    )
+    private val arretPremier = Arrets(arrayListOf(ar1,ar1,ar1,ar2,ar3, ar4,ar5,ar6,ar7),arrayListOf(ar4))
+    private val premier = Ligne("ligne1","1","tram","ffffff",false,arretPremier)
 
+    private val second = Ligne("bouaye - bougnais","C1 ","bus","904030",true,null)
 
-    private val second = Ligne(
-        favorie = true,
-        nom = "bouaye - bougnais",
-        numero = "C1 ",
-        type = "bus",
-        coulor="904030",
-        arrets = null
-    )
+    private val troisieme = Ligne("saint-herblain - commerce","113","bus","0000ff",false,null)
 
-    private val troisieme = Ligne(
-        favorie = false,
-        nom = "saint-herblain - commerce",
-        numero = "113 ",
-        type = "bus",
-        coulor="0000ff",
-        arrets = null
-    )
+    fun deselted(){
+        for(item in this.lignesStorage.values.filter{it.isSelected}){
+            item.isSelected = false
+            addLigne(item)
+        }
+    }
+
+    fun addFavorie(){
+        for(item in this.lignesStorage.values.filter{it.isSelected}){
+            item.favorie = !item.favorie
+            addLigne(item)
+        }
+    }
+
 
     fun getLigne(nom : String):Ligne? {
         return this.lignesStorage[nom]
@@ -58,7 +59,8 @@ class Ligneshelf{
     }
 
     fun shearch(shearch :String) : ArrayList<Ligne>{
-         val rep = ArrayList<Ligne>(this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)})
+         val rep = ArrayList<Ligne>(this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)}.filter{it.favorie}+
+                 this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)}.filter{!it.favorie})
         println(rep)
         return rep
     }
