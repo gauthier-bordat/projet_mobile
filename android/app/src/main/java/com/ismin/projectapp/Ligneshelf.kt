@@ -54,7 +54,6 @@ class Ligneshelf{
     }
 
 
-
     fun addLigne(ligne: Ligne){
             this.lignesStorage[ligne.nom]=ligne
     }
@@ -96,6 +95,10 @@ class Ligneshelf{
     fun getAllLignes() : ArrayList<Ligne> {
         return ArrayList<Ligne>(this.lignesStorage.values.filter{it.favorie} + this.lignesStorage.values.filter{!it.favorie})
     }
+/*
+    fun getAll() : ArrayList<Ligne>{
+        return
+    }*/
 
     fun clear() :Unit{
         clearLigne()

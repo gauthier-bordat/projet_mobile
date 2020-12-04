@@ -17,10 +17,9 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.ligneshelf.essai()
+
         displayList()
     }
-
-
 
     private fun displayList(){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -31,8 +30,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
 
         a_main_btn_creation.visibility = View.VISIBLE
         a_main_btn_search.visibility = View.VISIBLE
-        a_main_btn_retour.visibility = View.GONE
-        a_main_btn_favorie.visibility = View.GONE
 
     }
 
@@ -51,8 +48,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
 
         a_main_btn_creation.visibility = View.GONE
         a_main_btn_search.visibility = View.GONE
-        a_main_btn_retour.visibility = View.VISIBLE
-        a_main_btn_favorie.visibility = View.VISIBLE
     }
 
     private fun displayCreation(){
@@ -63,8 +58,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
 
         a_main_btn_creation.visibility = View.GONE
         a_main_btn_search.visibility = View.GONE
-        a_main_btn_retour.visibility = View.GONE
-        a_main_btn_favorie.visibility = View.GONE
     }
 
     fun goToCreation(view: View) = displayCreation()
@@ -78,21 +71,18 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
 
         a_main_btn_creation.visibility = View.GONE
         a_main_btn_search.visibility = View.GONE
-        a_main_btn_retour.visibility = View.GONE
-        a_main_btn_favorie.visibility = View.GONE
     }
 
     fun displayShearchDone(shearch: String){
+        println("displayShearchDone")
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val ligneListFragment = LigneListFragment.newInstance(this.ligneshelf.shearch(shearch))
 
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, ligneListFragment)
         fragmentTransaction.commit()
 
-        a_main_btn_creation.visibility = View.GONE
+        a_main_btn_creation.visibility = View.VISIBLE
         a_main_btn_search.visibility = View.VISIBLE
-        a_main_btn_retour.visibility = View.VISIBLE
-        a_main_btn_favorie.visibility = View.GONE
 
     }
     fun goToShearch(view: View)=  displayShearch()
@@ -125,12 +115,7 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor,ArretCreato
         }
     }
 
-    fun goToMain(view: View) {
-        this.ligneshelf.deselted()
-        displayList()}
-    fun AddFavorie(view: View) {
-        this.ligneshelf.addFavorie()
-    }
+
 
 
 }

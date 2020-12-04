@@ -30,7 +30,7 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,p
         holder.bind(favorie,nom,numero,type,couleur)
 
         if(lignes[position] is Ligne){
-            val dataItem = lignes[position] as Ligne
+            val dataItem = lignes[position]
             if(dataItem.isSelected){
                 context?.let{
                     ContextCompat.getColor(it , R.color.select)
@@ -42,6 +42,7 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,p
         }
 
     }
+
 
     override fun getItemCount(): Int = lignes.size
 
@@ -62,8 +63,9 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,p
                     list[item].isSelected = false
                 }
                 list[adapterPosition].isSelected = false
+                val mCallback = DeviceClickListener()
 
-                mCallback.onDeviceClick(list[adapterPosition].nom)
+                mCallback.onDeviceClick(listener,list[adapterPosition].nom)
                 notifyDataSetChanged()
                 context?.let { it1 ->ContextCompat.getColor(it1,R.color.select) }?.let { it2 -> itemView.constraint_list?.setBackgroundColor(it2) }
             }
@@ -91,7 +93,9 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,p
 
         }
     }
+
 }
+
 
 class DeviceClickListener{
     fun onDeviceClick(listener:ArretCreator,nom: String) {
