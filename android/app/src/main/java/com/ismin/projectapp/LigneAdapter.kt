@@ -98,7 +98,6 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,p
 
 
 class DeviceClickListener{
-
     fun onDeviceClick(listener:ArretCreator,nom: String) {
         println(nom)
         println(listener)

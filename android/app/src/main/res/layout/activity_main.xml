@@ -49,7 +49,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_baseline_search_24" />
-    <!--    android:onClick="goToCreation" -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_main_btn_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:elevation="6dp"
+        android:text="retour"
+        android:onClick="goToMain"
+        android:tint="#ffffff"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_main_btn_favorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:onClick="AddFavorie"
+        android:elevation="6dp"
+        android:text="Search"
+        android:tint="#FFFFFF"
+        app:fabSize="auto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_baseline_star_24" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
