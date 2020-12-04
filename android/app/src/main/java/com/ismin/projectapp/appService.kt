@@ -6,7 +6,7 @@ import java.util.ArrayList
 
 interface appService {
     @GET("ligne_tan")
-    fun getLigne():Call<ArrayList<Ligne>>
+    fun getAll():Call<ArrayList<Ligne>>
 
     @GET( "ligne_tan/{nom}")
     fun getbyName(@Path("nom") nom: String): Call<Ligne>
