@@ -1,5 +1,5 @@
 package com.ismin.projectapp
-
+import { AppService } from './api/src/app.service';
 class Ligneshelf (){
     private val lignes : ArrayList<Ligne> = ArrayList<Ligne>()
     private val favories : ArrayList<Ligne> = ArrayList<Ligne>()
