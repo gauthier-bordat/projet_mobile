@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 private const val ARG_LIGNES = "ARG_LIGNES"
 
-class LigneListFragment : Fragment(){
+class LigneListFragment : Fragment(),LigneAdapter.mCallback{
     private lateinit var lignes : ArrayList<Ligne>
     private lateinit var rcvLignes : RecyclerView
     private lateinit var ligneAdapter: LigneAdapter
 
+    private var listener:  LigneListListener?=null
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         lignes = arguments!!.getSerializable(ARG_LIGNES) as ArrayList<Ligne>

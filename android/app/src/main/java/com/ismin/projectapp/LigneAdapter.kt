@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -89,7 +90,7 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
     }
 }
 
-class DeviceClickListener{
+interface DeviceClickListener{
     fun onDeviceClick(nom: String){
 
     }

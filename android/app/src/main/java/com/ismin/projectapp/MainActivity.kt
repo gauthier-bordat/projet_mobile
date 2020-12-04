@@ -16,9 +16,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
+class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor, LigneListFragment.LigneListener{
     private val ligneshelf = Ligneshelf()
-
+    private lateinit var appservice : appService
 
 
     private val premier = Ligne(
