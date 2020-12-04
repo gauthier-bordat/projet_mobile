@@ -39,6 +39,8 @@ Nous avons implémenté plusieurs fonctionnalités :
 
 - un put qui permet d'ajouter un élément à la base de données
 
+les données étant très grandes les teste unitaire ne seront pas vérifiés, mais dans l'IDE on peut voire la conformité des réponses. 
+
 ### Part 2: Android
 
 Nous avons créé une application android comme IHM en Kotlin, l'idée étant de créer un environnement simplifié d'affichage des lignes et de leurs données. C'est notamment le rôle de `LigneAdapter` et `LigneListFragement`.
