@@ -45,7 +45,26 @@ describe('AppController', () => {
           }
       );
     });
+    it('/GET devrais tout retourner', async () => {
+
+        const response =  await httpRequester.get('/ligne_tan').expect(200);
+
+        expect(response.body).toMatchObject(
+            {
+                favorie:true,
+                nom: 'test',
+                numero: 'c1',
+                type:'bus',
+                color:'ffffff',
+                arrets:[{
+                    ligne:'test',
+                    type:'bus',
+                    coordonne:[[43,15]]}]
+            }
+        );
+    });
   });
+
 
 
 
