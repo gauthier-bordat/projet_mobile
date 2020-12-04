@@ -43,6 +43,7 @@ private lateinit var arretsAdapter: ArretAdapter
 
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
         this.rcvArrets.addItemDecoration(dividerItemDecoration)
+        ligne.isSelected = true
 
         var txvNom = rootView.findViewById<TextView>(R.id.f_ligne_text_nom)
         var txvNum = rootView.findViewById<TextView>(R.id.f_ligne_text_num)

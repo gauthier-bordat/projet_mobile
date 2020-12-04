@@ -12,7 +12,7 @@ class Ligneshelf{
     private val ar6 =Arret("6","a", arrayListOf(43,11))
     private val ar7 =Arret("7","a", arrayListOf(43,10))
 
-    private val arretPremier = Arrets(arrayListOf(ar1,ar2,ar3),arrayListOf(ar4))
+    private val arretPremier = Arrets(arrayListOf(ar1,ar1,ar1,ar2,ar3, ar4,ar5,ar6,ar7),arrayListOf(ar4))
     private val premier = Ligne("ligne1","1","tram","ffffff",false,arretPremier)
 
     private val second = Ligne("bouaye - bougnais","C1 ","bus","904030",true,null)
@@ -60,7 +60,8 @@ class Ligneshelf{
     }
 
     fun shearch(shearch :String) : ArrayList<Ligne>{
-         val rep = ArrayList<Ligne>(this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)})
+         val rep = ArrayList<Ligne>(this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)}.filter{it.favorie}+
+                 this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)}.filter{!it.favorie})
         println(rep)
         return rep
     }
