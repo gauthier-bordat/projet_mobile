@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Project App</string>
+    <string name="search">Recherche</string>
+    <string name="create">Créer</string>
+    <string name="name">Nom</string>
+    <string name="num">Num</string>
+    <string name="save">Sauvegarder</string>
+    <string name="color">Couleur</string>
+    <string name="type">Type</string>
+</resources>

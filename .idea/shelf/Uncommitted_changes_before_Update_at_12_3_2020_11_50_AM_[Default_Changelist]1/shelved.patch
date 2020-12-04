@@ -1,0 +1,213 @@
+Index: api/src/app.controller.spec.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Test, TestingModule } from '@nestjs/testing';\r\nimport { AppController } from './app.controller';\r\nimport { AppModule } from './app.module';\r\nimport { INestApplication } from '@nestjs/common';\r\nimport supertest from 'supertest';\r\nimport * as request from 'supertest';\r\nimport {Ligne_traitee} from \"./ligne\";\r\nimport {Arret} from \"./arret\";\r\nimport * as mongoose from \"mongoose\";\r\n\r\n\r\n\r\n\r\n\r\ndescribe('AppController', () => {\r\n  let app: INestApplication;\r\n  jest.setTimeout(20000);\r\n  let httpRequester: supertest.SuperTest<supertest.Test>;\r\n  beforeEach(async () => {\r\n    const moduleRef = await Test.createTestingModule({\r\n      imports:[AppModule],\r\n    }).compile();\r\n    app = moduleRef.createNestApplication();\r\n\r\n    await app.init();\r\n\r\n    httpRequester = request(app.getHttpServer());\r\n\r\n  });\r\n\r\n\r\n    it('/GET devrais tout retourner', async () => {\r\n\r\n      const response =  await httpRequester.get('/ligne_tan').expect(200);\r\n     /** const traitee = traiter(response.body);\r\n      for(let i = 0; i < traitee.length;i++){\r\n          await httpRequester.put('/ligne_tan')\r\n              .send(traitee[i]);\r\n      }**/\r\n\r\n      expect(response.body).toMatchObject(\r\n          {\r\n            favorie:true,\r\n            nom: 'test',\r\n            numero: 'c1',\r\n            type:'bus',\r\n            color:'ffffff',\r\n            arrets:[{\r\n              ligne:'test',\r\n              type:'bus',\r\n              coordonne:[[43,15]]}]\r\n          }\r\n      );\r\n    });\r\n  });\r\n\r\nfunction traiter(obj:any) :Array<Ligne_traitee>{\r\n    const rep : Array<Ligne_traitee> = [];\r\n    for(let i = 0;i<obj.length;i++){\r\n        if(obj[i].fields == undefined){break;}\r\n        const arretsRetour : Array<Arret> = [];\r\n        const arretsAller : Array<Arret> = [];\r\n        for(let j = 0;j<obj[i].fields.shape.coordinates[0].length;j++){\r\n            const arret :Arret = {\r\n                ligne: obj[i].fields.route_long_name,\r\n                type: obj[i].fields.route_type,\r\n                coordonnee: [obj[i].fields.shape.coordinates[0][j][0],\r\n                    obj[i].fields.shape.coordinates[0][j][1]]\r\n            };\r\n            arretsAller.push(arret);\r\n        }\r\n        if(obj[i].fields.shape.coordinates.length == 2){\r\n        for(let j = 0;j<obj[i].fields.shape.coordinates[1].length;j++){\r\n            const arret :Arret = {\r\n                ligne: obj[i].fields.route_long_name,\r\n                type: obj[i].fields.route_type,\r\n                coordonnee: [obj[i].fields.shape.coordinates[1][j][0],\r\n                    obj[i].fields.shape.coordinates[1][j][1]]\r\n            };\r\n            arretsRetour.push(arret);\r\n        }}\r\n        const ligne : Ligne_traitee = {\r\n            _id:obj[i]._id.toString(),\r\n            favorie:false,\r\n            nom: obj[i].fields.route_long_name,\r\n            numero:obj[i].fields.route_short_name,\r\n            type:obj[i].fields.route_type,\r\n            color:obj[i].fields.route_color,\r\n            arrets:{\r\n                aller: arretsAller,\r\n                retour: arretsRetour}};\r\n        rep.push(ligne);\r\n    }\r\n    return rep;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- api/src/app.controller.spec.ts	(revision 6fcb6772bee51418f765f0fbdb98688bf09cfcd4)
++++ api/src/app.controller.spec.ts	(date 1606866238114)
+@@ -7,9 +7,7 @@
+ import {Ligne_traitee} from "./ligne";
+ import {Arret} from "./arret";
+ import * as mongoose from "mongoose";
+-
+-
+-
++import {url} from "inspector";
+ 
+ 
+ describe('AppController', () => {
+@@ -29,9 +27,9 @@
+   });
+ 
+ 
+-    it('/GET devrais tout retourner', async () => {
++    it('/GET Favorie', async () => {
+ 
+-      const response =  await httpRequester.get('/ligne_tan').expect(200);
++      const response =  await httpRequester.get('/ligne_tan').query({favorie : 'true'}).expect(200);
+      /** const traitee = traiter(response.body);
+       for(let i = 0; i < traitee.length;i++){
+           await httpRequester.put('/ligne_tan')
+@@ -51,8 +49,53 @@
+               coordonne:[[43,15]]}]
+           }
+       );
++    });
++    it(`/GET Ligne/:nom`, async () => {
++        const response = await httpRequester.get('/ligne_tan/Coutancière - Lycée Appert').expect(200);
++
++        expect(response.body).toMatchObject({
++            favorie:false,
++            nom: 'Coutancière - Lycée Appert',
++            numero: '116',
++            type:'Bus',
++            color:'ffffff',
++            arrets:[{
++                ligne:'test',
++                type:'bus',
++                coordonne:[[43,15]]}]
++        });
++    });
++    it(`/GET Ligne/:numero`, async () => {
++        const response = await httpRequester.get('/ligne_tan/109').expect(200);
++
++        expect(response.body).toMatchObject({
++            favorie:false,
++            nom: 'Ferrière - Couchant',
++            numero: '109',
++            type:'Bus',
++            color:'ffffff',
++            arrets:[{
++                ligne:'test',
++                type:'bus',
++                coordonne:[[43,15]]}]
++        });
++    });
++it(`/POST Ajouter favorie/:nom`, async () => {
++    const response = await httpRequester.post('/ligne_tan/Coutancière - Lycée Appert').expect(200);
++    expect(response.body).toMatchObject({
++        favorie:true,
++        nom: 'Coutancière - Lycée Appert',
++        numero: '116',
++        type:'Bus',
++        color:'ffffff',
++        arrets:[{
++            ligne:'test',
++            type:'bus',
++            coordonne:[[43,15]]}]
+     });
+-  });
++});
++});
++
+ 
+ function traiter(obj:any) :Array<Ligne_traitee>{
+     const rep : Array<Ligne_traitee> = [];
+Index: api/src/app.controller.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Controller,Param,Body, Get,Put,Post } from '@nestjs/common';\r\nimport { AppService } from './app.service';\r\nimport { Ligne_traitee} from './ligne';\r\n\r\n@Controller('ligne_tan')\r\nexport class AppController {\r\n  constructor(private readonly appService: AppService) {}\r\n\r\n  @Get()\r\n  getAll(): Promise<Ligne_traitee[]> {\r\n    return this.appService.getAll();\r\n  }\r\n\r\n  @Put()\r\n  addLigne(@Body() newLigne:Ligne_traitee):Promise<Ligne_traitee> | undefined {\r\n    return this.appService.addLigne(newLigne);\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- api/src/app.controller.ts	(revision 6fcb6772bee51418f765f0fbdb98688bf09cfcd4)
++++ api/src/app.controller.ts	(date 1606866056297)
+@@ -1,16 +1,40 @@
+-import { Controller,Param,Body, Get,Put,Post } from '@nestjs/common';
++import { Controller,Param,Body, Get,Put,Post, Query } from '@nestjs/common';
+ import { AppService } from './app.service';
+ import { Ligne_traitee} from './ligne';
+ 
+ @Controller('ligne_tan')
+ export class AppController {
+   constructor(private readonly appService: AppService) {}
+-
++  /*/
++  @Get()
++  getLignearret(@Param('coordonne')  param : Array<number>): Promise<Ligne_traitee>  {
++    return Promise.resolve(this.appService.getLignearret(param));
++  }         /*/
+   @Get()
+-  getAll(): Promise<Ligne_traitee[]> {
++  /*/getAll(): Promise<Ligne_traitee[]> {
+     return this.appService.getAll();
++  }                /*/
++  getFavorie(@Query("favorie") favorie: string): Promise<Ligne_traitee[]>{
++    if (favorie==undefined){
++       return this.appService.getAll();
++    }
++    else{
++      return this.appService.getFavorie();
++    }
++  }
++  @Get(':nom')
++  getLigne(@Param('nom') param: string): Promise<Ligne_traitee>{
++    return Promise.resolve(this.appService.getLigne(param)) ;
++  }
++  @Get(':numero')
++  getLignenumero(@Param('numero') param: string ): Promise<Ligne_traitee>{
++    return Promise.resolve(this.appService.getLignenumero(param)) ;
+   }
+ 
++  @Post(':nom')
++  changetoFavori(@Param('nom') param: string): Promise<Ligne_traitee>{
++    return Promise.resolve(this.appService.changetoFavori(param));
++  }
+   @Put()
+   addLigne(@Body() newLigne:Ligne_traitee):Promise<Ligne_traitee> | undefined {
+     return this.appService.addLigne(newLigne);
+Index: api/src/app.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Injectable } from '@nestjs/common';\r\nimport { Ligne_traitee} from './ligne';\r\nimport { InjectModel } from '@nestjs/mongoose';\r\nimport {Ligne_traiteeDocument} from './app.schema';\r\nimport {Model} from 'mongoose';\r\n\r\n@Injectable()\r\nexport class AppService {\r\n  constructor(\r\n    @InjectModel(Ligne_traiteeDocument.name)\r\n   private readonly ligne_traiteeRepository:Model<Ligne_traiteeDocument>\r\n  ) {}\r\n  getAll(): Promise<Ligne_traitee[]> {\r\n    return  this.ligne_traiteeRepository.find().exec();\r\n  }\r\n\r\n  addLigne(ligne:Ligne_traitee) :Promise<Ligne_traitee>{\r\n    return this.ligne_traiteeRepository.create(ligne);\r\n  }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- api/src/app.service.ts	(revision 6fcb6772bee51418f765f0fbdb98688bf09cfcd4)
++++ api/src/app.service.ts	(date 1606865561991)
+@@ -13,9 +13,27 @@
+   getAll(): Promise<Ligne_traitee[]> {
+     return  this.ligne_traiteeRepository.find().exec();
+   }
++  /*/
++  getLignearret(coordonne: Array<number>): Promise<Ligne_traitee[]> {
++    return  this.ligne_traiteeRepository.find({arret:{aller[]}})
++  }/*/
++  getFavorie():Promise<Ligne_traitee[]>{
++    return this.ligne_traiteeRepository.find({favorie:true}).exec();
++  }
++
++
++  getLigne(name: string): Promise<Ligne_traitee>{
++    return this.ligne_traiteeRepository.findOne({nom:name}).exec();
++  }
++
++  getLignenumero(number: string): Promise<Ligne_traitee>{
++    return this.ligne_traiteeRepository.findOne({numero:number}).exec();
++  }
+ 
+   addLigne(ligne:Ligne_traitee) :Promise<Ligne_traitee>{
+     return this.ligne_traiteeRepository.create(ligne);
+   }
+-
++  changetoFavori(name: string): Promise<Ligne_traitee>{
++    return this.ligne_traiteeRepository.updateOne({nom:name},{$set:{favorie:true}}).exec();
++  }
+ }
+Index: api/src/app.schema.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Prop, Schema, SchemaFactory } from '@nestjs/mongoose';\r\nimport {Document } from 'mongoose';\r\nimport { Arret } from './arret';\r\nimport * as mongoose from \"mongoose\";\r\n\r\n@Schema({collection: 'ligne_traitee_tan'})\r\nexport class Ligne_traiteeDocument extends Document{\r\n  @Prop()\r\n  _id:string;\r\n\r\n  @Prop()\r\n  favorie:boolean;\r\n\r\n  @Prop()\r\n  nom: string;\r\n\r\n  @Prop()\r\n  numero:string;\r\n\r\n  @Prop()\r\n  type:string;\r\n\r\n  @Prop()\r\n  color:string;\r\n\r\n  @Prop()\r\n  arrets:{ aller:Array<Arret>,\r\n    retour:Array<Arret>};\r\n}\r\n\r\nexport const Ligne_traiteeSchema = SchemaFactory.createForClass(Ligne_traiteeDocument);\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- api/src/app.schema.ts	(revision 6fcb6772bee51418f765f0fbdb98688bf09cfcd4)
++++ api/src/app.schema.ts	(date 1606863246657)
+@@ -15,7 +15,7 @@
+   nom: string;
+ 
+   @Prop()
+-  numero:string;
++  numero: string;
+ 
+   @Prop()
+   type:string;
+Index: .idea/aws.xml
+===================================================================
+--- .idea/aws.xml	(date 1606320801734)
++++ .idea/aws.xml	(date 1606320801734)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="accountSettings">
++    <option name="activeRegion" value="us-east-1" />
++    <option name="recentlyUsedRegions">
++      <list>
++        <option value="us-east-1" />
++      </list>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
