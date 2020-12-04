@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
     }
 
     private fun displayList(){
-        println("displayList")
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val ligneListFragment = LigneListFragment.newInstance(this.ligneshelf.getAllLignes())
 
@@ -67,8 +66,24 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
 
     }
 
+    fun GoToArrets(nom :String) = displayArrte(nom)
+
+    private fun displayArrte(nom :String){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val arretListFragment = this.ligneshelf.getLigne(nom)?.arrets?.let {
+            ArretsListFragment.newInstance(
+                it.aller)
+        }
+        if (arretListFragment != null){
+
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, arretListFragment)
+        fragmentTransaction.commit()
+
+        a_main_btn_creation.visibility = View.GONE
+        a_main_btn_search.visibility = View.GONE
+    }}
+
     private fun displayCreation(){
-        println("displayCreation")
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val createLigneFragment = CreateLigneFragment()
         fragmentTransaction.add(R.id.a_main_lyt_fragment_container, createLigneFragment)
@@ -132,4 +147,6 @@ class MainActivity : AppCompatActivity(),LigneCreator,LigneShearchor{
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 }

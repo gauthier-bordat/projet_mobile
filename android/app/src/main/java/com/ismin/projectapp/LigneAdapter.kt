@@ -42,13 +42,13 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
     override fun getItemCount(): Int = lignes.size
 
     inner class LigneViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txvNom = itemView.findViewById<TextView>(R.id.text_nom)
-        var txvNum = itemView.findViewById<TextView>(R.id.text_num)
-        var imgvCouleur = itemView.findViewById<ImageView>(R.id.image_couleur)
-        var imgvTram = itemView.findViewById<ImageView>(R.id.image_tram)
-        var imgvBus = itemView.findViewById<ImageView>(R.id.image_bus)
-        var imgvFavorie = itemView.findViewById<ImageView>(R.id.image_favorie)
-        var imgvPasFavorie = itemView.findViewById<ImageView>(R.id.image_pas_favorie)
+        var txvNom = itemView.findViewById<TextView>(R.id.f_row_ligne_text_nom)
+        var txvNum = itemView.findViewById<TextView>(R.id.f_row_ligne_text_num)
+        var imgvCouleur = itemView.findViewById<ImageView>(R.id.f_row_ligne_image_couleur)
+        var imgvTram = itemView.findViewById<ImageView>(R.id.f_row_ligne_image_tram)
+        var imgvBus = itemView.findViewById<ImageView>(R.id.f_row_ligne_image_bus)
+        var imgvFavorie = itemView.findViewById<ImageView>(R.id.f_row_ligne_image_favorie)
+        var imgvPasFavorie = itemView.findViewById<ImageView>(R.id.f_row_ligne_image_pas_favorie)
 
         init {
             itemView.setOnClickListener {
@@ -59,7 +59,7 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
                 }
                 list[adapterPosition].isSelected = false
 
-                mCallback.onDeviceClick(adapterPosition)
+                mCallback.onDeviceClick(list[adapterPosition].nom)
                 notifyDataSetChanged()
                 context?.let { it1 ->ContextCompat.getColor(it1,R.color.select) }?.let { it2 -> itemView.constraint_list?.setBackgroundColor(it2) }
             }
@@ -89,8 +89,9 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
     }
 }
 
-class DeviceClickListener(){
-    fun onDeviceClick(adapter: Int){
+class DeviceClickListener{
+    fun onDeviceClick(nom: String){
 
     }
 }
+

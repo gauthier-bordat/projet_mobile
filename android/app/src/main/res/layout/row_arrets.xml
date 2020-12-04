@@ -26,7 +26,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/f_row_arret_ordonnee"
-        app:layout_constraintBottom_BottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/f_row_arret_ordonnee_val"
@@ -52,5 +52,7 @@
         app:layout_constraintStart_toEndOf="@id/f_row_arret_abssyce"
         app:layout_constraintTop_toBottomOf="@id/f_row_arret_ordonnee_val"
         app:layout_constraintVertical_bias="0.0" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
