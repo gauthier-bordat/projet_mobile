@@ -11,7 +11,7 @@ data class Ligne(
     val id: Long = 0,
 
     @ColumnInfo(name = "favorie")
-    val favorie: Boolean,
+    var favorie: Boolean,
 
     @ColumnInfo(name = "nom")
     val nom: String,
@@ -32,4 +32,5 @@ data class Ligne(
     var isSelected: Boolean = false,
         ) :Serializable {
             constructor(nom:String,numero: String,type:String,coulor: String) : this(0,false,nom,numero,type,coulor,null,false)
+            constructor(nom:String,numero: String,type:String,coulor: String,favorie: Boolean,arrets: Arrets?) : this(1,favorie,nom,numero,type,coulor,arrets,false)
 }

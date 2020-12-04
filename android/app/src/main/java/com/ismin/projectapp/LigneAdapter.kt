@@ -1,18 +1,21 @@
 package com.ismin.projectapp
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_ligne_list.view.*
 
-class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, private var mCallback: DeviceClickListener) : RecyclerView.Adapter<LigneAdapter.LigneViewHolder>() {
+class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>,private val listener:ArretCreator) : RecyclerView.Adapter<LigneAdapter.LigneViewHolder>() {
 
 
 
@@ -90,9 +93,13 @@ class LigneAdapter(var context: Context?, private val lignes: ArrayList<Ligne>, 
     }
 }
 
-interface DeviceClickListener{
-    fun onDeviceClick(nom: String){
-
-    }
-}
+class DeviceClickListener{
+    fun onDeviceClick(listener:ArretCreator,nom: String) {
+        println(nom)
+        println(listener)
+       if(listener is ArretCreator){ listener.GoToArret(nom)}
+        else{
+            println("bizzard")
+       }
+}}
 

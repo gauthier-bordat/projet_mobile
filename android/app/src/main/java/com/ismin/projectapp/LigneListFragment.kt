@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 private const val ARG_LIGNES = "ARG_LIGNES"
 
-class LigneListFragment : Fragment(),LigneAdapter.mCallback{
+class LigneListFragment : Fragment(){
     private lateinit var lignes : ArrayList<Ligne>
     private lateinit var rcvLignes : RecyclerView
     private lateinit var ligneAdapter: LigneAdapter
 
-    private var listener:  LigneListListener?=null
+    private lateinit var listener: ArretCreator
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         lignes = arguments!!.getSerializable(ARG_LIGNES) as ArrayList<Ligne>
@@ -29,7 +30,7 @@ class LigneListFragment : Fragment(),LigneAdapter.mCallback{
     ) :View?{
         val rootView = inflater.inflate(R.layout.fragment_ligne_list, container,false)
         this.rcvLignes = rootView.findViewById(R.id.f_ligne_list_rcv_ligne)
-        ligneAdapter = LigneAdapter(context,lignes,DeviceClickListener())
+        ligneAdapter = LigneAdapter(context,lignes,listener)
         this.rcvLignes.adapter = ligneAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         this.rcvLignes.layoutManager = linearLayoutManager
@@ -39,6 +40,16 @@ class LigneListFragment : Fragment(),LigneAdapter.mCallback{
 
         return rootView
 
+    }
+
+    override fun onAttach(context: Context){
+        super.onAttach(context)
+        println(context)
+        if(context is ArretCreator){
+            listener = context
+        } else{
+            throw RuntimeException("$context must implement ArretCreator")
+        }
     }
 
 
@@ -54,4 +65,8 @@ class LigneListFragment : Fragment(),LigneAdapter.mCallback{
             return ligneListFragment
         }
     }
+}
+
+interface ArretCreator{
+    fun GoToArret(nom : String)
 }

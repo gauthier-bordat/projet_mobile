@@ -45,10 +45,7 @@ class CreateLigneFragment : Fragment(){
         } else {
             throw RuntimeException("$context must implement LigneCreator")
         }
-
     }
-
-
 }
 
 interface LigneCreator{
