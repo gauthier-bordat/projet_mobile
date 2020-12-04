@@ -1,11 +1,12 @@
 package com.ismin.projectapp
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_ARRETS = "ARG_ARRETS"
 
 class ArretsListFragment : Fragment(){
+    private lateinit var ligne: Ligne
     private lateinit var arrets : ArrayList<Arret>
     private lateinit var rcvArrets : RecyclerView
 private lateinit var arretsAdapter: ArretAdapter
-private lateinit var listener: DeviceClickListener
+
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        arrets = arguments!!.getSerializable(ARG_ARRETS) as ArrayList<Arret>
+        ligne = arguments!!.getSerializable(ARG_ARRETS) as Ligne
+        if(ligne.arrets == null){arrets = ArrayList()}
+        else{arrets = ligne.arrets!!.aller}
     }
 
     override fun onCreateView(
@@ -28,15 +32,16 @@ private lateinit var listener: DeviceClickListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) : View? {
-        val rootView = inflater.inflate(R.layout.activity_ligne,container,false)
+        val rootView = inflater.inflate(R.layout.fragment_ligne,container,false)
         this.rcvArrets = rootView.findViewById(R.id.f_ligne_rcv_arret)
-        arretsAdapter = ArretAdapter(arrets)
+        arretsAdapter = ArretAdapter(arrets,ligne)
         this.rcvArrets.adapter = arretsAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         this.rcvArrets.layoutManager = linearLayoutManager
 
         val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
         this.rcvArrets.addItemDecoration(dividerItemDecoration)
+
 
         return rootView
     }
@@ -47,7 +52,7 @@ private lateinit var listener: DeviceClickListener
 
     companion object{
         @JvmStatic
-        fun newInstance(arretToDisplay: ArrayList<Arret>) : ArretsListFragment {
+        fun newInstance(arretToDisplay: Ligne) : ArretsListFragment {
             val bundle = Bundle()
             bundle.putSerializable(ARG_ARRETS,arretToDisplay)
 

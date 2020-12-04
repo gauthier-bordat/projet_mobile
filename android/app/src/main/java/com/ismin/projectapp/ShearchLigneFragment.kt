@@ -17,7 +17,8 @@ class ShearchLigneFragment : Fragment(){
     private lateinit var listener : LigneShearchor
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
+            inflater: LayoutInflater,
+            container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View?{
         val rootView = inflater.inflate(R.layout.shearch_ligne_fragment,container, false)

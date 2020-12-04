@@ -4,8 +4,43 @@ class Ligneshelf{
     private val lignesStorage : HashMap<String, Ligne> = HashMap<String, Ligne>()
 
 
+
+    private val premier = Ligne(
+        favorie = false,
+        nom = "ligne1",
+        numero = "1",
+        type = "tram",
+        coulor="ffffff",
+        arrets = null
+    )
+
+
+    private val second = Ligne(
+        favorie = true,
+        nom = "bouaye - bougnais",
+        numero = "C1 ",
+        type = "bus",
+        coulor="904030",
+        arrets = null
+    )
+
+    private val troisieme = Ligne(
+        favorie = false,
+        nom = "saint-herblain - commerce",
+        numero = "113 ",
+        type = "bus",
+        coulor="0000ff",
+        arrets = null
+    )
+
     fun getLigne(nom : String):Ligne? {
         return this.lignesStorage[nom]
+    }
+
+    fun essai(){
+        addLigne(premier)
+        addLigne(second)
+        addLigne(troisieme)
     }
     
     fun getLigneArret(nom : String):ArrayList<Arret>{
@@ -17,24 +52,14 @@ class Ligneshelf{
         this.lignesStorage.clear()
     }
 
-    private val favoriesStorage : HashMap<String,Ligne> = HashMap<String, Ligne>()
-
-    fun getFavorie(nom: String):Ligne?{
-        return this.favoriesStorage[nom]
-    }
 
 
     fun addLigne(ligne: Ligne){
-        if (ligne.favorie){
-            this.favoriesStorage[ligne.nom] = ligne
-        } else{
             this.lignesStorage[ligne.nom]=ligne
-        }
     }
 
     fun shearch(shearch :String) : ArrayList<Ligne>{
-         val rep = ArrayList<Ligne>(this.favoriesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)} +
-                 this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)})
+         val rep = ArrayList<Ligne>(this.lignesStorage.values.filter { it.numero.contains(shearch) || it.nom.contains(shearch)})
         println(rep)
         return rep
     }
@@ -63,22 +88,18 @@ class Ligneshelf{
     }
 
     fun getNumberOfLignes():Int{
-        return this.lignesStorage.size + this.favoriesStorage.size
+        return this.lignesStorage.size
     }
     
     fun getAllLignes() : ArrayList<Ligne> {
-        return ArrayList<Ligne>(this.favoriesStorage.values + this.lignesStorage.values)
+        return ArrayList<Ligne>(this.lignesStorage.values.filter{it.favorie} + this.lignesStorage.values.filter{!it.favorie})
     }
 
     fun clear() :Unit{
-        clearFavorie()
         clearLigne()
     }
 
 
 
-    fun clearFavorie():Unit{
-        this.favoriesStorage.clear()
-    }
 
 }
