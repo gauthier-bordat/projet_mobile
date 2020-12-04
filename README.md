@@ -39,7 +39,7 @@ Nous avons implémenté plusieurs fonctionnalités :
 
 - un put qui permet d'ajouter un élément à la base de données
 
-les données étant très grandes les teste unitaire ne seront pas vérifiés, mais dans l'IDE on peut voire la conformité des réponses. 
+les données étant très grandes les teste unitaire ne seront pas vérifiés, mais dans l'IDE on peut voire la conformité des réponses ou alors on peut voire les effets escomptés directement sur la base de données. 
 
 ### Part 2: Android
 
